@@ -10,14 +10,14 @@
 ## Participantes:
 
 #### Front End:
-* [Gabriel Reis Cunha]()
-* [Luíza Machado Costa Nascimento]()
-* [Vinicius Campos]()
+* [Gabriel Reis Cunha](https://github.com/GabrielRCunha)
+* [Luíza Machado Costa Nascimento](https://github.com/luizamc003)
+* [Vinicius Campos](https://github.com/ViniCampos12)
 
 ### Back End:
-* [Diego Pereira Betti]()
-* [José Simões]()
-* [Lucas Fernandes Oliveira]()
+* [Diego Pereira Betti](https://github.com/Diegopbetti)
+* [José Simões](https://github.com/SimoessJose)
+* [Lucas Fernandes Oliveira](https://github.com/lucasferoli)
 
 ## Descrição do Projeto:
 
