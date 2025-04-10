@@ -10,7 +10,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                            <form method="POST" action="">
+                            <form method="POST" action="/crudUsuarios/delete">
                                 <input type="hidden" name="id" value="<?= $usuario->id ?>">
                                 <button type="submit" class="btn btn-danger">Deletar</button>
                             </form>

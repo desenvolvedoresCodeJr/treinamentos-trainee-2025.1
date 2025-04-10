@@ -16,3 +16,5 @@ use App\Core\Router;
     $router->post('crudUsuarios/create', 'UsuariosController@store');
 
     $router->post('crudUsuarios/edit', 'UsuariosController@edit');
+
+    $router->post('crudUsuarios/delete', 'UsuariosController@delete');

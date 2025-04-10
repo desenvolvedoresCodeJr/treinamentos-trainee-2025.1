@@ -43,7 +43,17 @@ class UsuariosController
 
         header('Location: /crudUsuarios');
     }
+    
+    public function delete()
+    {
+        $id = $_POST['id'];
+
+        App::get('database')->delete('usuarios', $id);
+
+        header('Location: /crudUsuarios');
+    }
 }
+
 
 
 ?>
