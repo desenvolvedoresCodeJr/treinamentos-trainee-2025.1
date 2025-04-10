@@ -7,4 +7,10 @@ use App\Core\Router;
 
     $router->get('', 'ExampleController@index');
     
+    //get e post: ação que está sendo solicitada ao servidor
+    //get: Solicitar dados de um recurso específico
+    //post: Enviar dados para serem processados
+
     $router->get('crudUsuarios', 'UsuariosController@index');
+    
+    $router->post('crudUsuarios/create', 'UsuariosController@store');

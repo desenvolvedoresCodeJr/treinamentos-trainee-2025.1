@@ -34,10 +34,11 @@
                             <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deletarModal-<?= $usuario->id ?>">Deletar</button>
                         </td>
                     </tr>
-
+            <?php endforeach ?>
             </tbody>
         </table>
     </main>
+    <?php foreach($usuarios as $usuario): ?>
 
             <!-- Modal Visualizar -->
             <?php require('C:\Users\User\treinamentos-trainee-2025.1\treinamentos-trainee-2025.1\app\views\admin\modais\modal_visualizar.php'); ?>
