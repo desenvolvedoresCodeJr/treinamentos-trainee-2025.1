@@ -6,7 +6,10 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
                         </div>
                         <div class="modal-body">
-                            <form method="POST" action="">
+
+
+
+                            <form method="POST" action="/crudUsuarios/edit">
                                 <input type="hidden" name="id" value="<?= $usuario->id ?>">
                                 <div class="mb-3">
                                     <label for="nome-<?= $usuario->id ?>" class="form-label">Nome</label>

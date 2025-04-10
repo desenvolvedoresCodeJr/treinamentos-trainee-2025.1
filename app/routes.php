@@ -14,3 +14,5 @@ use App\Core\Router;
     $router->get('crudUsuarios', 'UsuariosController@index');
     
     $router->post('crudUsuarios/create', 'UsuariosController@store');
+
+    $router->post('crudUsuarios/edit', 'UsuariosController@edit');

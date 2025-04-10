@@ -29,15 +29,33 @@ class QueryBuilder
         }
     }
 
+
     public function insert($table, $parameters)
     {
-        // INSERT INTO nome_da_tabela (coluna_1, coluna_2, coluna_3) 
-        // VALUES (valor_1, 'valor_2', valor_3);]
-
         $sql = sprintf('INSERT INTO %s (%s) VALUES (:%s)',
         $table,
         implode(', ', array_keys($parameters)),
         implode(', :', array_keys($parameters))
+    );
+
+    try {
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute($parameters);
+
+
+    } catch (Exception $e) {
+        die($e->getMessage());
+    }
+    }
+
+    public function update($table, $id, $parameters)
+    {
+        $sql = sprintf('UPDATE %s SET %s WHERE id = %s',
+        $table,
+        implode(', ', array_map(function($param) {
+            return $param . ' = :' .$param;
+        }, array_keys($parameters))),
+        $id
     );
 
     try {
