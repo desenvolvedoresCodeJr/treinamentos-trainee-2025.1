@@ -40,106 +40,20 @@
     </main>
 
             <!-- Modal Visualizar -->
-            <div class="modal fade" id="visualizarModal-<?= $usuario->id ?>" tabindex="-1" aria-labelledby="visualizarModalLabel-<?= $usuario->id ?>" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="visualizarModalLabel-<?= $usuario->id ?>">Detalhes do Usuário</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
-                        </div>
-                        <div class="modal-body">
-                            <p><strong>ID:</strong> <?= $usuario->id ?></p>
-                            <p><strong>Nome:</strong> <?= $usuario->nome ?></p>
-                            <p><strong>Email:</strong> <?= $usuario->email ?></p>
-                            <p><strong>Senha:</strong> <?= $usuario->senha ?></p>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <?php require('C:\Users\User\treinamentos-trainee-2025.1\treinamentos-trainee-2025.1\app\views\admin\modais\modal_visualizar.php'); ?>
 
             <!-- Modal Editar -->
-            <div class="modal fade" id="editarModal-<?= $usuario->id ?>" tabindex="-1" aria-labelledby="editarModalLabel-<?= $usuario->id ?>" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="editarModalLabel-<?= $usuario->id ?>">Editar Usuário</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
-                        </div>
-                        <div class="modal-body">
-                            <form method="POST" action="">
-                                <input type="hidden" name="id" value="<?= $usuario->id ?>">
-                                <div class="mb-3">
-                                    <label for="nome-<?= $usuario->id ?>" class="form-label">Nome</label>
-                                    <input type="text" class="form-control" id="nome-<?= $usuario->id ?>" name="nome" value="<?= $usuario->nome ?>" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="email-<?= $usuario->id ?>" class="form-label">Email</label>
-                                    <input type="email" class="form-control" id="email-<?= $usuario->id ?>" name="email" value="<?= $usuario->email ?>" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="senha-<?= $usuario->id ?>" class="form-label">Senha</label>
-                                    <input type="password" class="form-control" id="senha-<?= $usuario->id ?>" name="senha" value="<?= $usuario->senha ?>" required>
-                                </div>
-                                <button type="submit" class="btn btn-warning">Salvar Alterações</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <?php require('C:\Users\User\treinamentos-trainee-2025.1\treinamentos-trainee-2025.1\app\views\admin\modais\modal_editar.php'); ?>
+            
 
             <!-- Modal Deletar -->
-            <div class="modal fade" id="deletarModal-<?= $usuario->id ?>" tabindex="-1" aria-labelledby="deletarModalLabel-<?= $usuario->id ?>" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="deletarModalLabel-<?= $usuario->id ?>">Confirmação de Exclusão</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
-                        </div>
-                        <div class="modal-body">
-                            Tem certeza que deseja deletar o usuário <strong><?= $usuario->nome ?></strong>?
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                            <form method="POST" action="">
-                                <input type="hidden" name="id" value="<?= $usuario->id ?>">
-                                <button type="submit" class="btn btn-danger">Deletar</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        <?php endforeach; ?>
+            <?php require('C:\Users\User\treinamentos-trainee-2025.1\treinamentos-trainee-2025.1\app\views\admin\modais\modal_deletar.php'); ?>
+       
+    <?php endforeach; ?>
 
-        <div class="modal fade" id="criarmodal" tabindex="-1" aria-labelledby="criarmodalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="criarmodalLabel">Criar Usuário</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form method="POST" action="">
-                            <div class="mb-3">
-                                <label for="nome" class="form-label">Nome</label>
-                                <input type="text" class="form-control" id="nome" name="nome" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="email" class="form-label">Email</label>
-                                <input type="email" class="form-control" id="email" name="email" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="senha" class="form-label">Senha</label>
-                                <input type="senha" class="form-control" id="senha" name="senha" required>
-                            </div>
-                            <button type="submit" class="btn btn-success">Criar</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
+  <!-- Modal Criar -->
+  <?php require('C:\Users\User\treinamentos-trainee-2025.1\treinamentos-trainee-2025.1\app\views\admin\modais\modal_criar.php'); ?>
+
     <!-- Bootstrap JS (optional, for interactive components) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
