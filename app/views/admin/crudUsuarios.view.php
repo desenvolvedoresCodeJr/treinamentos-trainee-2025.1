@@ -29,23 +29,73 @@
                         <td><?= $usuario->nome ?></td>
                         <td><?= $usuario->email ?></td>
                         <td>
-                            <button type="button" class="btn btn-info">Visualizar</button> 
-                            <button type="button" class="btn btn-warning">Editar</button> 
+                            <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#visualizarModal-<?= $usuario->id ?>">Visualizar</button> 
+                            <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editarModal-<?= $usuario->id ?>">Editar</button> 
                             <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deletarModal-<?= $usuario->id ?>">Deletar</button>
                         </td>
                     </tr>
-                <?php endforeach; ?>
+
             </tbody>
         </table>
     </main>
 
-        <!-- Modal for Deleting Users -->
-        <?php foreach($usuarios as $usuario): ?>
+            <!-- Modal Visualizar -->
+            <div class="modal fade" id="visualizarModal-<?= $usuario->id ?>" tabindex="-1" aria-labelledby="visualizarModalLabel-<?= $usuario->id ?>" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="visualizarModalLabel-<?= $usuario->id ?>">Detalhes do Usuário</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p><strong>ID:</strong> <?= $usuario->id ?></p>
+                            <p><strong>Nome:</strong> <?= $usuario->nome ?></p>
+                            <p><strong>Email:</strong> <?= $usuario->email ?></p>
+                            <p><strong>Senha:</strong> <?= $usuario->senha ?></p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Editar -->
+            <div class="modal fade" id="editarModal-<?= $usuario->id ?>" tabindex="-1" aria-labelledby="editarModalLabel-<?= $usuario->id ?>" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="editarModalLabel-<?= $usuario->id ?>">Editar Usuário</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form method="POST" action="">
+                                <input type="hidden" name="id" value="<?= $usuario->id ?>">
+                                <div class="mb-3">
+                                    <label for="nome-<?= $usuario->id ?>" class="form-label">Nome</label>
+                                    <input type="text" class="form-control" id="nome-<?= $usuario->id ?>" name="nome" value="<?= $usuario->nome ?>" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="email-<?= $usuario->id ?>" class="form-label">Email</label>
+                                    <input type="email" class="form-control" id="email-<?= $usuario->id ?>" name="email" value="<?= $usuario->email ?>" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="senha-<?= $usuario->id ?>" class="form-label">Senha</label>
+                                    <input type="password" class="form-control" id="senha-<?= $usuario->id ?>" name="senha" value="<?= $usuario->senha ?>" required>
+                                </div>
+                                <button type="submit" class="btn btn-warning">Salvar Alterações</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Deletar -->
             <div class="modal fade" id="deletarModal-<?= $usuario->id ?>" tabindex="-1" aria-labelledby="deletarModalLabel-<?= $usuario->id ?>" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="deleteModalLabel-<?= $usuario->id ?>">Confirmação de Exclusão</h5>
+                            <h5 class="modal-title" id="deletarModalLabel-<?= $usuario->id ?>">Confirmação de Exclusão</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
                         </div>
                         <div class="modal-body">
