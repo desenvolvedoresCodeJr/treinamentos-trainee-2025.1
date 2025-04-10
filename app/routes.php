@@ -12,9 +12,9 @@ use App\Core\Router;
     //post: Enviar dados para serem processados
 
     $router->get('crudUsuarios', 'UsuariosController@index');
-    
     $router->post('crudUsuarios/create', 'UsuariosController@store');
-
     $router->post('crudUsuarios/edit', 'UsuariosController@edit');
-
     $router->post('crudUsuarios/delete', 'UsuariosController@delete');
+
+
+    $router->get('crudPosts', 'PostsController@index');
