@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>CRUD Usuarios</title>
     <!-- Bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" href="/public/css/crudUsuarios.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
@@ -51,6 +52,14 @@
             <?php require('C:\Users\diego\OneDrive\Documentos\treinamentos-trainee-2025.1\app\views\admin\modais\usuarios\modal_deletar.php'); ?>
        
     <?php endforeach; ?>
+    <div class="paginas<?= $total_pages <= 1 ? " none" : "" ?>">
+            <button class="anterior<?= $page <= 1 ? " disabled" : "" ?>"  onclick="location.href='?paginacaoNumero=<?= $page - 1 ?>'">
+                < </button>
+                    <?php for ($page_number = 1; $page_number <= $total_pages; $page_number++): ?>
+                        <button class="pag1<?= $page_number == $page ? " active" : "" ?>" onclick="location.href='?paginacaoNumero=<?= $page_number ?>'"><?= $page_number ?></button>
+                    <?php endfor ?>
+            <button class="proximo<?= $page >= $total_pages ? " disabled" : "" ?>"  onclick="location.href='?paginacaoNumero=<?= $page + 1 ?>'">></button>
+    </div>
 
   <!-- Modal Criar -->
   <?php require('C:\Users\diego\OneDrive\Documentos\treinamentos-trainee-2025.1\app\views\admin\modais\usuarios\modal_criar.php'); ?>
