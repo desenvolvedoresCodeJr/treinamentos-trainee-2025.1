@@ -13,6 +13,12 @@
     </header>
 
     <main class="container my-4">
+        <!-- Barra de Pesquisa-->
+        <form class="d-flex mb-4" method="" action="">
+            <input class="form-control me-2" type="search" placeholder="Pesquisar usuários" aria-label="Search" name="search">
+            <button class="btn btn-outline-success" type="submit">Pesquisar</button>
+        </form>
+
         <table class="table table-striped table-bordered">
             <thead class="table-dark">
                 <tr>
