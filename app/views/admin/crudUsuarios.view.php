@@ -14,7 +14,7 @@
 
     <main class="container my-4">
         <!-- Barra de Pesquisa-->
-        <form class="d-flex mb-4" method="" action="">
+        <form class="d-flex mb-4" method="GET" action="/crudUsuarios/search">
             <input class="form-control me-2" type="search" placeholder="Pesquisar usuários" aria-label="Search" name="search">
             <button class="btn btn-outline-success" type="submit">Pesquisar</button>
         </form>

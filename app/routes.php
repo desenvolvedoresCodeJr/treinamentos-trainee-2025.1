@@ -10,11 +10,8 @@ use App\Core\Router;
     //get e post: ação que está sendo solicitada ao servidor
     //get: Solicitar dados de um recurso específico
     //post: Enviar dados para serem processados
-
     $router->get('crudUsuarios', 'UsuariosController@index');
+    $router->get('crudUsuarios/search', 'UsuariosController@index'); // Route to handle search functionality
     $router->post('crudUsuarios/create', 'UsuariosController@store');
     $router->post('crudUsuarios/edit', 'UsuariosController@edit');
     $router->post('crudUsuarios/delete', 'UsuariosController@delete');
-
-
-    $router->get('crudPosts', 'PostsController@index');
