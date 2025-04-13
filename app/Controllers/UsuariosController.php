@@ -32,7 +32,7 @@ class UsuariosController
         $total_pages = ceil($rows_count/$itensPage);
 
         if($page > $total_pages){
-            header('Location: /usuarios?paginacaoNumero=1');
+            header('Location: /crudUsuarios?paginacaoNumero=1');
             exit;
         }
 
