@@ -23,11 +23,12 @@
             </thead>
             <tbody>
                 <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#criarmodal">Criar</button>
-                <?php foreach($posts as $post): ?>
+                <?php foreach($posts as $post): 
+                    $usuario = App\Core\App::get('database')->selectAll('usuarios', ['id' => $post->id_autor])[0]; ?>
                     <tr>
                         <td><?= $post->id ?></td>
                         <td><?= $post->titulo ?></td>
-                        <td><?= $post->autor_id->nome ?></td>
+                        <td><?= $usuario->nome ?></td>
                         <td>
                             <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#visualizarModal-<?= $post->id ?>">Visualizar</button> 
                             <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editarModal-<?= $post->id ?>">Editar</button> 
