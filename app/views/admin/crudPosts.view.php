@@ -23,22 +23,22 @@
             </thead>
             <tbody>
                 <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#criarmodal">Criar</button>
-                <?php foreach($usuarios as $usuario): ?>
+                <?php foreach($posts as $post): ?>
                     <tr>
                         <td><?= $post->id ?></td>
                         <td><?= $post->titulo ?></td>
                         <td><?= $post->autor_id->nome ?></td>
                         <td>
-                            <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#visualizarModal-<?= $usuario->id ?>">Visualizar</button> 
-                            <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editarModal-<?= $usuario->id ?>">Editar</button> 
-                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deletarModal-<?= $usuario->id ?>">Deletar</button>
+                            <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#visualizarModal-<?= $post->id ?>">Visualizar</button> 
+                            <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editarModal-<?= $post->id ?>">Editar</button> 
+                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deletarModal-<?= $post->id ?>">Deletar</button>
                         </td>
                     </tr>
             <?php endforeach ?>
             </tbody>
         </table>
     </main>
-    <?php foreach($usuarios as $usuario): ?>
+    <?php foreach($posts as $post): ?>
 
             <!-- Modal Visualizar -->
             <?php require('C:\Users\User\treinamentos-trainee-2025.1\treinamentos-trainee-2025.1\app\views\admin\modais\usuarios\modal_visualizar.php'); ?>

@@ -7,9 +7,9 @@
                         </div>
                         <div class="modal-body">
                             <p><strong>ID:</strong> <?= $post->id ?></p>
-                            <p><strong>Titulo:</strong> <?= $post->Titulo ?></p>
+                            <p><strong>Titulo:</strong> <?= $post->titulo ?></p>
                             <p><strong>Descricao:</strong> <?= $post->descricao ?></p>
-                            <p><strong>Imagem:</strong> <?= $post->Imagem ?></p>
+                            <p><strong>Imagem:</strong> <?= $post->imagem ?></p>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>

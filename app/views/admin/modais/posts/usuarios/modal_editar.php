@@ -12,11 +12,11 @@
                             <form method="POST" action="/crudPosts/edit">
                                 <input type="hidden" name="id" value="<?= $usuario->id ?>">
                                 <div class="mb-3">
-                                    <label for="Titulo-<?= $usuario->id ?>" class="form-label">Titulo</label>
+                                    <label for="Titulo-<?= $post->id ?>" class="form-label">Titulo</label>
                                     <input type="text" class="form-control" id="titulo-<?= $post->id ?>" name="titulo" value="<?= $post->titulo ?>" required>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="descricao-<?= $usuario->id ?>" class="form-label">Descricao</label>
+                                    <label for="descricao-<?= $post->id ?>" class="form-label">Descricao</label>
                                     <input type="descricao" class="form-control" id="descricao-<?= $descricao->id ?>" name="descricao" value="<?= $post->descricao ?>" required>
                                 </div>
                                 <div class="mb-3">
