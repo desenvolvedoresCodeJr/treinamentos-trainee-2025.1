@@ -9,7 +9,8 @@
                             <p><strong>ID:</strong> <?= $post->id ?></p>
                             <p><strong>Titulo:</strong> <?= $post->titulo ?></p>
                             <p><strong>Descricao:</strong> <?= $post->descricao ?></p>
-                            <p><strong>Imagem:</strong> <?= $post->imagem ?></p>
+                            <p><strong>Imagem:</strong></p>
+                            <img src="/<?= $post->imagem ?>" alt="Imagem do Post" style="max-width: 100%; height: auto;">
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>

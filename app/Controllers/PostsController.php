@@ -51,7 +51,7 @@ class PostsController
         
         $nomeimagem =  sha1(uniqid($_FILES['imagem']['name'], true)) . '.' . pathinfo($_FILES['imagem']['name'], PATHINFO_EXTENSION);
 
-        $destinoimagem = "public\assets\imagensPosts";
+        $destinoimagem = "public/assets/imagensPosts/";
 
         move_uploaded_file($temporario, $destinoimagem . $nomeimagem);
 
