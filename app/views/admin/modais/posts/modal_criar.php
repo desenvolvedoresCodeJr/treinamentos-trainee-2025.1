@@ -12,8 +12,8 @@
                                 <input type="text" class="form-control" id="titulo" name="titulo" required>
                             </div>
                             <div class="mb-3">
-                                <label for="Descricao" class="form-label">Descricao</label>
-                                <input type="text" class="form-control" id="titulo" name="titulo" required>
+                                <label for="Descricao" class="form-label">Descrição</label>
+                                <input type="text" class="form-control" id="descricao" name="descricao" required>
                             </div>
                                 <div class="mb-3">
                                     <label for="Imagem" class="form-label">Imagem</label>

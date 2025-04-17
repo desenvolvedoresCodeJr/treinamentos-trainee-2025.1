@@ -42,19 +42,19 @@
     <?php foreach($posts as $post): ?>
 
             <!-- Modal Visualizar -->
-            <?php require('C:\Users\User\treinamentos-trainee-2025.1\treinamentos-trainee-2025.1\app\views\admin\modais\usuarios\modal_visualizar.php'); ?>
+            <?php require('app\views\admin\modais\posts\modal_visualizar.php'); ?>
 
             <!-- Modal Editar -->
-            <?php require('C:\Users\User\treinamentos-trainee-2025.1\treinamentos-trainee-2025.1\app\views\admin\modais\usuarios\modal_editar.php'); ?>
+            <?php require('app\views\admin\modais\posts\modal_editar.php'); ?>
             
 
             <!-- Modal Deletar -->
-            <?php require('C:\Users\User\treinamentos-trainee-2025.1\treinamentos-trainee-2025.1\app\views\admin\modais\usuarios\modal_deletar.php'); ?>
+            <?php require('app\views\admin\modais\posts\modal_deletar.php'); ?>
        
     <?php endforeach; ?>
 
   <!-- Modal Criar -->
-  <?php require('C:\Users\User\treinamentos-trainee-2025.1\treinamentos-trainee-2025.1\app\views\admin\modais\usuarios\modal_criar.php'); ?>
+  <?php require('app\views\admin\modais\posts\modal_criar.php'); ?>
 
     <!-- Bootstrap JS (optional, for interactive components) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>

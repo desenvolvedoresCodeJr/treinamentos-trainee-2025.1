@@ -46,10 +46,23 @@ class PostsController
 
     public function store()
     {
+
+        $temporario = $_FILES['imagem']['tmp_name'];
+        
+        $nomeimagem =  sha1(uniqid($_FILES['imagem']['name'], true)) . '.' . pathinfo($_FILES['imagem']['name'], PATHINFO_EXTENSION);
+
+        $destinoimagem = "public\assets\imagensPosts";
+
+        move_uploaded_file($temporario, $destinoimagem . $nomeimagem);
+
+        $caminhodaimagem = "public\assets\imagensPosts/" . $nomeimagem;
+
         $parameters = [
-            'nome' => $_POST['nome'],
-            'email' => $_POST['email'],
-            'senha' => $_POST['senha'],
+            'titulo' => $_POST['titulo'],
+            'descricao' => $_POST['descricao'],
+            'imagem' =>  $caminhodaimagem,
+            'id_autor' => 1,
+
         ];
 
         App::get('database')->insert('posts', $parameters);
@@ -60,9 +73,11 @@ class PostsController
     public function edit()
     {
         $parameters = [
-            'nome' => $_POST['nome'],
-            'email' => $_POST['email'],
-            'senha' => $_POST['senha'],
+            'titulo' => $_POST['titulo'],
+            'descricao' => $_POST['descricao'],
+            'imagem' => $_POST['imagem'],
+            'criado_em' => $_POST['criado_em'],
+            'id_autor' => $_POST['id_autor'],
         ];
 
         $id = $_POST['id'];
