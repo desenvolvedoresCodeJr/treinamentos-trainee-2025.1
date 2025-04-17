@@ -30,18 +30,24 @@
             </thead>
             <tbody>
                 <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#criarmodal">Criar</button>
-                <?php foreach($usuarios as $usuario): ?>
+                <?php if (!empty($usuarios) && is_array($usuarios)): ?>
+                    <?php foreach($usuarios as $usuario): ?>
+                        <tr>
+                            <td><?= $usuario->id ?></td>
+                            <td><?= $usuario->nome ?></td>
+                            <td><?= $usuario->email ?></td>
+                            <td>
+                                <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#visualizarModal-<?= $usuario->id ?>">Visualizar</button> 
+                                <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editarModal-<?= $usuario->id ?>">Editar</button> 
+                                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deletarModal-<?= $usuario->id ?>">Deletar</button>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                <?php else: ?>
                     <tr>
-                        <td><?= $usuario->id ?></td>
-                        <td><?= $usuario->nome ?></td>
-                        <td><?= $usuario->email ?></td>
-                        <td>
-                            <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#visualizarModal-<?= $usuario->id ?>">Visualizar</button> 
-                            <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editarModal-<?= $usuario->id ?>">Editar</button> 
-                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deletarModal-<?= $usuario->id ?>">Deletar</button>
-                        </td>
+                        <td colspan="4" class="text-center">Nenhum usuário encontrado.</td>
                     </tr>
-            <?php endforeach ?>
+                <?php endif; ?>
             </tbody>
         </table>
     </main>

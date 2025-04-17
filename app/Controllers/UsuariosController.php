@@ -33,7 +33,7 @@ class UsuariosController
             $usuarios = App::get('database')->selectAll('usuarios', $inicio, $itensPage, null);
         }
 
-        $total_pages = ceil($rows_count / $itensPage);
+        $total_pages = max(1, ceil($rows_count / $itensPage));
 
         if ($page > $total_pages) {
             header('Location: /crudUsuarios?paginacaoNumero=1');

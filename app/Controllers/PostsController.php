@@ -14,7 +14,7 @@ class PostsController
             $page = intval($_GET['paginacaoNumero']);
 
             if ($page <= 0) {
-                return redirect('admin/crudPosts');
+                return redirect('crudPosts');
             }
         }
 
@@ -23,24 +23,23 @@ class PostsController
         $rows_count = App::get('database')->countAll('posts');
 
         if ($inicio > $rows_count) {
-            return redirect('admin/crudPosts');
+            return redirect('crudPosts');
         }
 
         if (isset($_GET['search']) && !empty($_GET['search'])) {
-            $usuarios = App::get('database')->selectAllWithSearch('posts', 'nome', $_GET['search'], $inicio, $itensPage);
-            $rows_count = App::get('database')->countAllWithSearch('posts', 'nome', $_GET['search']);
+            $posts = App::get('database')->selectAllWithSearch('posts', 'titulo', $_GET['search'], $inicio, $itensPage);
+            $rows_count = App::get('database')->countAllWithSearch('posts', 'titulo', $_GET['search']);
         } else {
             $posts = App::get('database')->selectAll('posts', $inicio, $itensPage, null);
         }
 
-        $total_pages = ceil($rows_count / $itensPage);
+        $total_pages = max(1, ceil($rows_count / $itensPage));
 
         if ($page > $total_pages) {
             header('Location: /crudPosts?paginacaoNumero=1');
             exit;
         }
 
-        // Send them to the Crud Usuarios page in Compact
         return view('admin/crudPosts', compact('posts', 'page', 'total_pages'));
     }
 
