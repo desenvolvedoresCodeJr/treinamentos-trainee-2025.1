@@ -1,7 +1,6 @@
 let eyeIconPassword = document.querySelector('#icon-password');
 
 function toggleTypeInputPassword(idInput){
-    console.log("Entrou")
     let inputPassword = document.getElementById(idInput);
     
     if(inputPassword.type === 'password'){
