@@ -1,0 +1,169 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter";
+}
+
+.main-login{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 93vh;
+    width: 100%;
+    background: linear-gradient(to bottom, #3b1b4d, #250a2f); 
+}
+
+.container-login{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 35%;
+    height: 70%;
+    background-color: rgb(244, 244, 244, 0.8);
+    border-radius: 12px;
+    padding: 1rem 2rem;
+}
+
+.container-login .content-login{
+    border: 4px solid #ffce07;
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: center;
+    padding: 0.6rem 3.2rem 2rem 3.2rem;
+    gap: 4.5rem;
+    max-width: 100%;
+}
+
+.input-login{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.input-login .box-input{
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+    padding: 0.3rem 0;
+}
+
+#email-input{
+    border-radius: 16px;
+    border: 3px solid #250a2f;
+    background-color: transparent;
+    padding: 0.6rem;
+}
+
+#password-box{
+    width: 100%;
+    border-radius: 16px;
+    border: 3px solid #250a2f;
+    padding: 0.6rem;
+    display: flex;
+    gap: 0.6rem;
+}
+
+#password-box input{
+    height: 100%;
+    background-color: transparent;
+    border: 0;
+    width: 100%;
+}
+
+#password-box i{
+    color: #250a2f;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+#password-box i:hover{
+    scale: 1.05;
+}
+
+
+
+#password-box input:focus-visible{
+    outline: none;
+}
+
+.input-button{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.input-button button{
+    background-color: #ffce07;
+    border-radius: 12px;
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.input-button button a{
+    text-decoration: none;
+    color: white;
+}
+
+.input-button button:hover{
+    background-color: #d3af1d;
+}
+
+@media (max-width: 1024px){
+   
+    .container-login{
+        width: 50%;
+    }
+
+    .container-login .content-login{
+        padding: 0.2rem 1.4rem 1rem 1.4rem;
+    }
+}
+
+@media (max-width: 768px){
+   
+   .container-login{
+       width: 60%;
+   }
+}
+
+@media (max-width: 640px){
+   
+   .container-login{
+       width: 70%;
+   }
+
+   .container-login .content-login{
+        padding: 0.2rem 1.4rem 1rem 1.4rem;
+    }
+
+}
+
+@media (max-width: 400px){
+   
+   .container-login{
+       width: 80%;
+   }
+
+   .container-login .content-login{
+        padding: 0 0.6rem 1.5rem 0.6rem;
+    }
+
+    .input-button button{
+        font-size: 1rem;
+    }   
+
+}
+
