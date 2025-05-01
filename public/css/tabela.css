@@ -3,16 +3,18 @@
     padding: 0;
     box-sizing: border-box;
     font-family: "Inter";
+    font-weight: 600;
 }  
 
 .tabela-content{
     display:flex;
     align-items: center;
+    gap: 100px;
 }
 
 .sidebar-admin{
     background-color: #3b1b4d;
-    color: rgb(237, 235, 238,0.9);
+    color: rgb(237, 235, 238,0.8);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -20,6 +22,7 @@
     padding: 0.6rem 0.6rem 2rem 0.6rem;
     border-radius: 0px 12px 12px 0px;
     height: 100vh;
+    transition: all 0.3s ease;
 }
 
 .sidebar-content{
@@ -40,19 +43,41 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: start;
     gap: 1.5rem;
+    padding: 0px 1rem;
 }
 
-i{
+ul li{
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.sidebar-links li{
     cursor: pointer;
     transition: all 0.2s ease;
 }
 
-i:hover{
+.sidebar-links li:hover{
     scale: 1.05;
+    color: #edebee;
 }
 
-.sidebar-logout i{
+.sidebar-logout div{
     cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.sidebar-logout div:hover{
+    scale: 1.05;
+    color: #edebee;
+}
+
+.sidebar-closed .item-description{
+    display: none;
+}
+
+.sidebar-closed .sidebar-content ul li{
+    gap: 0;
 }
