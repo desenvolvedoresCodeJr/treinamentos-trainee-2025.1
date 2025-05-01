@@ -6,6 +6,12 @@
     <title>CodeNews | Tabela de Notícias</title>
     <script src="https://kit.fontawesome.com/654def639f.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../../../public/css/tabela.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
 </head>
 <body class="tabela-content">
     <aside class="sidebar-admin">
@@ -13,16 +19,22 @@
             <img src="../../../assets/logo-codenews.png" alt="Logo CodeNews" />
             <ul class="sidebar-links">
                 <li>
-                    <i class="fa-solid fa-house"></i>
-                    <span class="item-description">Página Inicial</span>
+                    <a href="/app/views/site/home.html">
+                        <i class="fa-solid fa-house"></i>
+                        <span class="item-description">Página Inicial</span>
+                    </a>
                 </li>
                 <li>
-                    <i class="fa-solid fa-pen-to-square"></i>
-                    <span class="item-description">Notícias</span>
+                    <a href="#">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                        <span class="item-description">Notícias</span>
+                    </a>
                 </li>
                 <li>
-                    <i class="fa-solid fa-user-pen"></i>
-                    <span class="item-description">Usuários</span>
+                    <a href="#">
+                        <i class="fa-solid fa-user-pen"></i>
+                        <span class="item-description">Usuários</span>
+                    </a>
                 </li>
             </ul>
         </div>
