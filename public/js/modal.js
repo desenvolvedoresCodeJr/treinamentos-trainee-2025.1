@@ -28,3 +28,38 @@ function fecharModal(idModalCr, idFundoCr){
     document.getElementById(idModalCr).style.display = 'none';
     document.getElementById(idFundoCr).style.display = 'none';
 }
+
+function erroChecker(idErroEmail, idErroSenha, idForm, idInputEmail, idInputSenha, event){
+    event.preventDefault();
+
+    const email = document.getElementById(idInputEmail).value;
+    const senha = document.getElementById(idInputSenha).value;
+    const img = document.getElementById('inputImage').files[0];
+
+    let valid = true;
+
+    if (!email) {
+        const erroEmail = document.getElementById(idErroEmail);
+        erroEmail.style.display = 'block';
+        erroEmail.innerText = 'Email é obrigatório';
+        valid = false;
+    }
+
+    if (!senha) {
+        const erroSenha = document.getElementById(idErroSenha);
+        erroSenha.style.display = 'block';
+        erroSenha.innerText = 'Senha é obrigatória';
+        valid = false;
+    }
+
+    if(!img){
+        const erroImg = document.getElementById('erroImg');
+        erroImg.style.display = 'block';
+        erroImg.innerText = 'imagem é obrigatória';
+        valid = false;
+    }
+
+    if (!valid) return;
+
+    document.getElementById(idForm).submit();
+}

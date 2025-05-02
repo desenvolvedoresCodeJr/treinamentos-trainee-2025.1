@@ -74,6 +74,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 80%;
+    margin-left: 10%;
+    margin-bottom: 20px;
 }
 
 .image input{
@@ -113,4 +116,17 @@
     margin-left: 10%;
     align-items: center;
     margin-bottom: 40px;
+}
+
+span{
+    color: red;
+    font-size: 12px;
+}
+
+#erroSenha{
+    transform: translateY(-20px);
+}
+
+#erroImg{
+    align-self: flex-start;
 }
