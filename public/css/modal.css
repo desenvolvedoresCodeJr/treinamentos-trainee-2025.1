@@ -1,35 +1,3 @@
-body{
-    margin: 0;
-    padding: 0;
-}
-
-.container{
-    width: 100vw;
-    height: 100vh;
-    background-color: aliceblue;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.botao{
-    width: 50px;
-    height: 50px;
-    background-color: blue;
-    border-radius: 10px;
-    align-items: center;
-    display: flex;
-    justify-content: center;
-    font-size: 20px;
-    color: white;
-    cursor: pointer;
-}
-
-.textoBotao{
-    margin: 0;
-    font-weight: bold;
-}
-
 .fundoModal{
     position: absolute;
     z-index: 2;
@@ -48,6 +16,8 @@ body{
     border-radius: 20px;
     display: none;
     flex-direction: column;
+    min-height: 400px;
+    justify-content: space-between;
 }
 
 .email{
@@ -81,9 +51,8 @@ body{
 
 .btnCriar{
     align-self: center;
-    margin-top: 20px;
     width: 70px;
-    height: 40px;
+    height: 60px;
     background-color: aqua;
     display: flex;
     justify-content: center;
@@ -91,7 +60,7 @@ body{
     padding: 0;
     border-radius: 10px;
     cursor: pointer;
-    margin-bottom: 20px;
+    margin-right: 30px;
 }
 
 .password i{
@@ -129,8 +98,19 @@ body{
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    margin-left: 30px;
 }
 
 .btnImage p{
     margin: 0;
+}
+
+.botoes{
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-left: 10%;
+    align-items: center;
+    margin-bottom: 40px;
 }
