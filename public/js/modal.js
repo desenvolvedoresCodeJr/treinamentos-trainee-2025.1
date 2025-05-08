@@ -1,19 +1,21 @@
-function abrirModal(idModal, idFundo){
-    document.getElementById(idModal).style.display = "flex";
-    document.getElementById(idFundo).style.display = "block";
+function abrirModal(idModal, idTela){
+    document.getElementById(idModal).style.display = 'block';
+    document.getElementById(idTela).style.display = 'block';
 }
 
-function mostrarSenha(idIcon, idInput){
-    const icon = document.getElementById(idIcon);
-    const input = document.getElementById(idInput);
+function mostrarSenha(idInput, idOlho){
 
-    if(input.type === 'password'){
-        input.setAttribute('type', 'text');
-        icon.classList.replace('bi-eye', 'bi-eye-slash');
+    const inputSenha = document.getElementById(idInput);
+    const Icone = document.getElementById(idOlho);
+
+    if(inputSenha.type === 'password'){
+        inputSenha.setAttribute('type', 'text');
+        Icone.classList.replace('bi-eye', 'bi-eye-slash')
     } else{
-        input.setAttribute('type', 'password');
-        icon.classList.replace('bi-eye-slash', 'bi-eye');
+        inputSenha.setAttribute('type', 'password');
+        Icone.classList.replace('bi-eye-slash', 'bi-eye');
     }
+
 }
 
 const image = document.getElementById('imgProfile');
@@ -24,42 +26,43 @@ inputImg.onchange = function(){
     image.style.display = 'block';
 }
 
-function fecharModal(idModalCr, idFundoCr){
-    document.getElementById(idModalCr).style.display = 'none';
-    document.getElementById(idFundoCr).style.display = 'none';
-}
-
 function erroChecker(idErroEmail, idErroSenha, idForm, idInputEmail, idInputSenha, event){
     event.preventDefault();
 
+    
+
     const email = document.getElementById(idInputEmail).value;
+    const usuario = document.getElementById('user').value;
     const senha = document.getElementById(idInputSenha).value;
     const img = document.getElementById('inputImage').files[0];
 
     let valid = true;
 
-    if (!email) {
+    if(!email){
         const erroEmail = document.getElementById(idErroEmail);
+        erroEmail.innerText = 'email é obrigatório';
         erroEmail.style.display = 'block';
-        erroEmail.innerText = 'Email é obrigatório';
+        console.log("confere");
         valid = false;
     }
 
-    if (!senha) {
-        const erroSenha = document.getElementById(idErroSenha);
-        erroSenha.style.display = 'block';
-        erroSenha.innerText = 'Senha é obrigatória';
+    if(!usuario){
+        document.getElementById('erroUser').innerText = 'usuário é obrigatório';
+        valid = false;
+    }
+
+    if(!senha){
+        document.getElementById(idErroSenha).innerText = 'senha é obrigatória';
         valid = false;
     }
 
     if(!img){
-        const erroImg = document.getElementById('erroImg');
-        erroImg.style.display = 'block';
-        erroImg.innerText = 'imagem é obrigatória';
+        document.getElementById('erroImg').innerText = 'imagem é obrigatória';
         valid = false;
     }
 
-    if (!valid) return;
+    if(!valid) return;
 
     document.getElementById(idForm).submit();
+
 }
