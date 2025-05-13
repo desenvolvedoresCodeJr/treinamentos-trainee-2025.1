@@ -25,3 +25,8 @@ use App\Core\Router;
     $router->post('crudPosts/create', 'PostsController@store');
     $router->post('crudPosts/edit', 'PostsController@edit');
     $router->post('crudPosts/delete', 'PostsController@delete');
+
+
+    //rotas post individual
+    $router->get('postIndividual', 'IndividualController@index');
+    $router->get('postIndividual/create', 'IndividualController@store');
