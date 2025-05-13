@@ -8,7 +8,7 @@
         <p><strong>Comentário:</strong> Este é um comentário de exemplo.</p>
     </div>
     <div class="modal-footer">
-        <form method="post" action="/comentarios/delete">
+        <form method="post" action="/postIndividual/delete">
             <input type="hidden" name="comentario_id" value="123">
             <button type="submit" class="btn btn-danger">Excluir Comentário</button>
         </form>
