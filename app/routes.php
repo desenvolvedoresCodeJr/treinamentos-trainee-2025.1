@@ -31,3 +31,4 @@ use App\Core\Router;
     $router->get('postIndividual/{id}', 'IndividualController@index');
     $router->post('postIndividual/{id}/create', 'IndividualController@store');
     $router->post('postIndividual/{id}/delete', 'IndividualController@delete');
+    $router->post('postIndividual/{id}/curtir', 'IndividualController@like');

@@ -36,13 +36,27 @@ class IndividualController
 
 public function delete()
 {
-    $id = trim($_POST['id']);
-    $id_post = trim($_POST['id_post']);
+    $id = $_POST['id'];
+    $id_post = $_POST['id_post'];
 
     App::get('database')->delete('comentarios', $id);
 
-    var_dump($id_post);
     header("Location: /postIndividual/$id_post");
 
 }
+
+
+public function like()
+{
+        $parameters = [
+            'like_id'=> $_POST['like_id'],
+            'autor_id' => 1,
+            'post_id' => $id,
+        ];
+        
+        App::get('database')->insert('comentarios', $parameters);
+
+        header("Location: /postIndividual/$id_post");
+    }
+
 }
