@@ -51,14 +51,18 @@
             <div class="my-4"></div>
             <h4>Faça seu comentário!</h4>
             <!-- Formulário para novo comentário -->
-            <form method="post" action="">
+
+            
+            <form method="post" action="/<?= $post->id ?>/create">
+                <input type="hidden" name="id_post" value="<?= $post->id ?>">
+                <input type="hidden" name="criado_em" value="<?= date('Y-m-d H:i:s') ?>">
                 <div class="mb-3">
-                    <label for="comment_author" class="form-label">Seu nome</label>
-                    <input type="text" class="form-control" id="comment_author" name="comment_author" required>
+                    <label for="id_autor" class="form-label">Seu nome</label>
+                    <input type="text" class="form-control" id="id_autor" name="id_autor" required>
                 </div>
                 <div class="mb-3">
-                    <label for="comment_content" class="form-label">Comentário</label>
-                    <textarea class="form-control" id="comment_content" name="comment_content" rows="3" required></textarea>
+                    <label for="texto" class="form-label">Comentário</label>
+                    <textarea class="form-control" id="texto" name="texto" rows="3" required></textarea>
                 </div>
                 <button type="submit" class="btn btn-primary">Enviar Comentário</button>
             </form>

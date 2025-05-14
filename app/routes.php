@@ -29,5 +29,5 @@ use App\Core\Router;
 
     //rotas post individual
     $router->get('postIndividual/{id}', 'IndividualController@index');
-    $router->get('postIndividual/{id}/create', 'IndividualController@store');
-    $router->get('postIndividual/{id}/delete', 'IndividualController@delete');
+    $router->post('postIndividual/{id}/create', 'IndividualController@store');
+    $router->post('postIndividual/{id}/delete', 'IndividualController@delete');

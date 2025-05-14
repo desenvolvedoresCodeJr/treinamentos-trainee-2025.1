@@ -20,17 +20,18 @@ class IndividualController
         return view('site/postIndividual', compact('post', 'usuarios', 'comentarios'));
     }
 
-    public function store()
+    public function store($id)
     {
         $parameters = [
             'texto' => $_POST['texto'],
-            'id_autor' => 1,
+            'id_autor' => $_POST['id_autor'],
+            'id_post' => $id,
+            'criado_em' => $_POST['criado_em'],
         ];
-        
-        App::get('database')->insert('comentarios' , $parameters);
 
-        header("Location: /postIndividual/{$_POST['id_post']}");
+        App::get('database')->insert('comentarios', $parameters);
 
+        header("Location: /postIndividual/{$id}");
     }
 
     public function delete()
