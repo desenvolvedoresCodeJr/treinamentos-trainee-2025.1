@@ -41,11 +41,16 @@
     </header>
     <div class="container">
         <div class="post-card-wrapper">
+
             <!-- Like button -->
-            <span class="like-btn" id="likeBtn" title="Curtir">
-                <i class="fa-regular fa-heart" id="likeIcon"></i>
-                <span class="like-count" id="likeCount"><?= isset($post->likes) ? $post->likes : 0 ?></span>
-            </span>
+            <form method="POST" action="/postIndividual/<?= $post->id ?>/curtir" style="display:inline;">
+                <input type="hidden" name="post_id" value="<?= $post->id ?>">
+                <button type="submit" class="like-btn border-0 bg-transparent p-0" id="likeBtn" title="like">
+                    <i class="fa-regular fa-heart" id="likeIcon"></i>
+                    <span class="like-count" id="likeCount"><?= isset($post->like_counter) ? $post->like_counter : 0 ?></span>
+                </button>
+            </form>
+
             <div class="card mb-4">
                 <div class="row g-0 align-items-center">
                     <?php if (!empty($post->imagem)): ?>
@@ -71,7 +76,7 @@
         </div>
         <section>
 <script>
-    // Simple like button toggle (no backend)
+    // Simple like button toggle (no backend) - adicionado no copilot, estou programando só o php
     document.addEventListener('DOMContentLoaded', function() {
         const likeBtn = document.getElementById('likeBtn');
         const likeIcon = document.getElementById('likeIcon');

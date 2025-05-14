@@ -48,15 +48,25 @@ public function delete()
 
 public function like()
 {
-        $parameters = [
-            'like_id'=> $_POST['like_id'],
-            'autor_id' => 1,
-            'post_id' => $id,
-        ];
-        
-        App::get('database')->insert('comentarios', $parameters);
+    $post_id = (int) $_POST['post_id'];
+    $parameters = [
+        'autor_id' => 1,
+        'post_id' => $post_id,
+    ];
 
-        header("Location: /postIndividual/$id_post");
-    }
+        // Ensure post_id is an integer
+    $post_id = (int) $post_id;
+
+    // Insert the like
+    App::get('database')->insert('likes', $parameters);
+
+    // Count likes for this post
+    $likeCount = App::get('database')->countAllWithSearch('likes', 'post_id', $post_id);
+    var_dump($likeCount);
+    // Update the like_counter in posts table
+    App::get('database')->update('posts', ['like_counter' => $likeCount], ['id' => $post_id]);
+
+    header("Location: /postIndividual/" . $post_id);
+}
 
 }
