@@ -24,7 +24,7 @@ class IndividualController
     {
         $parameters = [
             'texto' => $_POST['texto'],
-            'id_autor' => $_POST['id_autor'],
+           'id_autor' => 1,
             'id_post' => $id,
             'criado_em' => $_POST['criado_em'],
         ];
