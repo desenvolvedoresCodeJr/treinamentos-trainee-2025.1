@@ -65,15 +65,11 @@
             <?php require('app\views\admin\modais\usuarios\modal_deletar.php'); ?>
        
     <?php endforeach; ?>
-    <div class="paginas<?= $total_pages <= 1 ? " none" : "" ?>">
-            <button class="anterior<?= $page <= 1 ? " disabled" : "" ?>"  onclick="location.href='?paginacaoNumero=<?= $page - 1 ?>'">
-                < </button>
-                    <?php for ($page_number = 1; $page_number <= $total_pages; $page_number++): ?>
-                        <button class="pag1<?= $page_number == $page ? " active" : "" ?>" onclick="location.href='?paginacaoNumero=<?= $page_number ?>'"><?= $page_number ?></button>
-                    <?php endfor ?>
-            <button class="proximo<?= $page >= $total_pages ? " disabled" : "" ?>"  onclick="location.href='?paginacaoNumero=<?= $page + 1 ?>'">></button>
-    </div>
+    
+    <!-- Paginacao -->
+    <?php require('app\views\admin\modais\paginacao.php'); ?>
 
+    
   <!-- Modal Criar -->
   <?php require('app\views\admin\modais\usuarios\modal_criar.php'); ?>
 

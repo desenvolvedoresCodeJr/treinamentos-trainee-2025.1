@@ -7,41 +7,47 @@ use Exception;
 
 class PostsController
 {
-    public function index()
-    {
-        $page = 1;
-        if (isset($_GET['paginacaoNumero']) && !empty($_GET['paginacaoNumero'])) {
-            $page = intval($_GET['paginacaoNumero']);
+public function index()
+{
+    $page = 1;
+    if (isset($_GET['paginacaoNumero']) && !empty($_GET['paginacaoNumero'])) {
+        $page = intval($_GET['paginacaoNumero']);
 
-            if ($page <= 0) {
-                return redirect('crudPosts');
-            }
-        }
-
-        $itensPage = 5;
-        $inicio = $itensPage * $page - $itensPage;
-        $rows_count = App::get('database')->countAll('posts');
-
-        if ($inicio > $rows_count) {
+        if ($page <= 0) {
             return redirect('crudPosts');
         }
-
-        if (isset($_GET['search']) && !empty($_GET['search'])) {
-            $posts = App::get('database')->selectAllWithSearch('posts', 'titulo', $_GET['search'], $inicio, $itensPage);
-            $rows_count = App::get('database')->countAllWithSearch('posts', 'titulo', $_GET['search']);
-        } else {
-            $posts = App::get('database')->selectAll('posts', $inicio, $itensPage, null);
-        }
-
-        $total_pages = max(1, ceil($rows_count / $itensPage));
-
-        if ($page > $total_pages) {
-            header('Location: /crudPosts?paginacaoNumero=1');
-            exit;
-        }
-
-        return view('admin/crudPosts', compact('posts', 'page', 'total_pages'));
     }
+
+    $itensPage = 5;
+    $inicio = $itensPage * $page - $itensPage;
+
+    // Ordenação
+    $ordenar = $_GET['ordenar'] ?? 'mais_recente';
+    $orderClause = match ($ordenar) {
+        'mais_antigo' => 'id ASC',
+        'relevancia'  => 'like_counter DESC',
+        default       => 'id ASC'
+    };
+
+    // Contagem de registros e busca
+    if (isset($_GET['search']) && !empty($_GET['search'])) {
+        $posts = App::get('database')->selectAllWithSearch('posts', 'titulo', $_GET['search'], $inicio, $itensPage, $orderClause);
+        $rows_count = App::get('database')->countAllWithSearch('posts', 'titulo', $_GET['search']);
+    } else {
+        $rows_count = App::get('database')->countAll('posts');
+        $posts = App::get('database')->selectAll('posts', $inicio, $itensPage, $orderClause);
+    }
+
+    $total_pages = max(1, ceil($rows_count / $itensPage));
+
+    if ($page > $total_pages) {
+        header('Location: /crudPosts?paginacaoNumero=1');
+        exit;
+    }
+
+    return view('admin/crudPosts', compact('posts', 'page', 'total_pages'));
+}
+
 
     public function store()
     {

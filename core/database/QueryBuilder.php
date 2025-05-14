@@ -14,22 +14,34 @@ class QueryBuilder
         $this->pdo = $pdo;
     }
 
-    public function selectAll($table, $inicio = null, $rows_count = null)
-    {
-        $sql = "SELECT * FROM {$table}";
+public function selectAll($table, $offset = null, $limit = null, $orderBy = null)
+{
+    $sql = "SELECT * FROM {$table}";
 
-        if ($inicio >= 0 && $rows_count > 0) {
-            $sql .= " LIMIT {$inicio}, {$rows_count}";
-        }
-
-        try {
-            $stmt = $this->pdo->prepare($sql);
-            $stmt->execute();
-            return $stmt->fetchAll(PDO::FETCH_CLASS);
-        } catch (Exception $e) {
-            die($e->getMessage());
-        }
+    if ($orderBy) {
+        $sql .= " ORDER BY {$orderBy}";
     }
+
+    if (is_numeric($offset) && is_numeric($limit) && $offset >= 0 && $limit > 0) {
+        $sql .= " LIMIT :limit OFFSET :offset";
+    }
+
+    try {
+        $stmt = $this->pdo->prepare($sql);
+
+        if (isset($limit) && isset($offset)) {
+            $stmt->bindValue(':limit', (int) $limit, PDO::PARAM_INT);
+            $stmt->bindValue(':offset', (int) $offset, PDO::PARAM_INT);
+        }
+
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_OBJ); // or FETCH_CLASS if you're mapping to a model
+    } catch (PDOException $e) {
+        error_log("DB Error in selectAll: " . $e->getMessage());
+        return []; // Or throw new Exception if you want to escalate
+    }
+}
+
 
     public function countAll($table)
     {
@@ -44,22 +56,35 @@ class QueryBuilder
         }
     }
 
-    public function selectAllWithSearch($table, $column, $search, $inicio = null, $rows_count = null)
-    {
-        $sql = "SELECT * FROM {$table} WHERE {$column} LIKE :search";
+public function selectAllWithSearch($table, $column, $search, $offset = null, $limit = null, $orderBy = null)
+{
+    $sql = "SELECT * FROM {$table} WHERE {$column} LIKE :search";
 
-        if ($inicio >= 0 && $rows_count > 0) {
-            $sql .= " LIMIT {$inicio}, {$rows_count}";
-        }
-
-        try {
-            $stmt = $this->pdo->prepare($sql);
-            $stmt->execute(['search' => "%{$search}%"]);
-            return $stmt->fetchAll(PDO::FETCH_CLASS);
-        } catch (Exception $e) {
-            die($e->getMessage());
-        }
+    if ($orderBy) {
+        $sql .= " ORDER BY {$orderBy}";
     }
+
+    if (is_numeric($offset) && is_numeric($limit) && $offset >= 0 && $limit > 0) {
+        $sql .= " LIMIT :limit OFFSET :offset";
+    }
+
+    try {
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(':search', "%{$search}%", PDO::PARAM_STR);
+
+        if (isset($limit) && isset($offset)) {
+            $stmt->bindValue(':limit', (int) $limit, PDO::PARAM_INT);
+            $stmt->bindValue(':offset', (int) $offset, PDO::PARAM_INT);
+        }
+
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_OBJ);
+    } catch (PDOException $e) {
+        error_log("DB Error in selectAllWithSearch: " . $e->getMessage());
+        return [];
+    }
+}
+
 
         public function selectOne($table, $id)
     {

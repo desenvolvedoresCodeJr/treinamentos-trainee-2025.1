@@ -20,6 +20,7 @@
             <button class="btn btn-outline-success" type="submit">Pesquisar</button>
         </form>
 
+        <!-- Tabela -->
         <table class="table table-striped table-bordered">
             <thead class="table-dark">
                 <tr>
@@ -30,27 +31,57 @@
                 </tr>
             </thead>
             <tbody>
-                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#criarmodal">Criar</button>
-                <?php if (!empty($posts) && is_array($posts)): ?>
-                    <?php foreach($posts as $post): 
-                        $usuario = App\Core\App::get('database')->selectAll('usuarios', ['id' => $post->id_autor])[0]; ?>
-                        <tr>
-                            <td><?= $post->id ?></td>
-                            <td><?= $post->titulo ?></td>
-                            <td><?= $usuario->nome ?></td>
-                            <td>
-                                <a href="/postIndividual/<?= $post->id ?>" class="btn btn-primary">Página</a>
-                                <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#visualizarModal-<?= $post->id ?>">Visualizar</button> 
-                                <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editarModal-<?= $post->id ?>">Editar</button> 
-                                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deletarModal-<?= $post->id ?>">Deletar</button>
-                            </td>
-                        </tr>
-                    <?php endforeach; ?>
-                <?php else: ?>
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <button type="button" class="btn btn-success me-2" data-bs-toggle="modal" data-bs-target="#criarmodal">Criar</button>
+                    <form method="GET" action="" class="d-flex align-items-center">
+                        <select name="ordenar" class="form-select w-auto" onchange="this.form.submit()">
+                            <option value="mais_recente" <?= (isset($_GET['ordenar']) && $_GET['ordenar'] == 'mais_recente') ? 'selected' : '' ?>>Mais recente</option>
+                            <option value="mais_antigo" <?= (isset($_GET['ordenar']) && $_GET['ordenar'] == 'mais_antigo') ? 'selected' : '' ?>>Mais antigo</option>
+                            <option value="relevancia" <?= (isset($_GET['ordenar']) && $_GET['ordenar'] == 'relevancia') ? 'selected' : '' ?>>Relevância</option>
+                        </select>
+                    </form>
+                </div>
+
+                <?php
+                if (!empty($posts) && is_array($posts)):
+                    
+                    // Ordena os posts por mais antigo
+                    if (isset($_GET['ordenar']) && $_GET['ordenar'] == 'mais_antigo') {
+                        $index = count($posts);
+                        while ($index) {
+                            $post = $posts[--$index];
+                            $usuario = App\Core\App::get('database')->selectAll('usuarios', ['id' => $post->id_autor])[0];
+                            require('app\views\admin\modais\tabela.php');
+                        }
+                    } 
+                    
+                    // Ordena os posts por like_counter (maior para menor)
+                    elseif (isset($_GET['ordenar']) && $_GET['ordenar'] == 'relevancia') {
+                        $posts_relevancia = $posts;
+                        usort($posts_relevancia, function($a, $b) {
+                            return $b->like_counter <=> $a->like_counter;
+                        });
+                        foreach($posts_relevancia as $post) {
+                            $usuario = App\Core\App::get('database')->selectAll('usuarios', ['id' => $post->id_autor])[0];
+                            require('app\views\admin\modais\tabela.php');
+                        }
+
+                    // Ordena os posts por mais recente
+                    } else {
+                        foreach($posts as $post) {
+                            $usuario = App\Core\App::get('database')->selectAll('usuarios', ['id' => $post->id_autor])[0];
+                            require('app\views\admin\modais\tabela.php');
+                        }
+                    }
+                else:
+                ?>
+
                     <tr>
                         <td colspan="4" class="text-center">Nenhum post encontrado.</td>
                     </tr>
-                <?php endif; ?>
+                <?php
+                endif;
+                ?>
             </tbody>
         </table>
     </main>
@@ -74,17 +105,19 @@
         <nav aria-label="Page navigation">
             <ul class="pagination justify-content-center">
                 <li class="page-item<?= $page <= 1 ? " disabled" : "" ?>">
-                    <a class="page-link" href="?paginacaoNumero=<?= $page - 1 ?>" aria-label="Previous">
+                    <a class="page-link" href="?paginacaoNumero=<?= $page - 1 ?><?= isset($_GET['ordenar']) ? '&ordenar=' . $_GET['ordenar'] : '' ?>" aria-label="Previous">
                         <span aria-hidden="true">&laquo;</span>
                     </a>
                 </li>
                 <?php for ($page_number = 1; $page_number <= $total_pages; $page_number++): ?>
                     <li class="page-item<?= $page_number == $page ? " active" : "" ?>">
-                        <a class="page-link" href="?paginacaoNumero=<?= $page_number ?>"><?= $page_number ?></a>
+                        <a class="page-link" href="?paginacaoNumero=<?= $page_number ?><?= isset($_GET['ordenar']) ? '&ordenar=' . $_GET['ordenar'] : '' ?>">
+                            <?= $page_number ?>
+                        </a>
                     </li>
                 <?php endfor ?>
                 <li class="page-item<?= $page >= $total_pages ? " disabled" : "" ?>">
-                    <a class="page-link" href="?paginacaoNumero=<?= $page + 1 ?>" aria-label="Next">
+                    <a class="page-link" href="?paginacaoNumero=<?= $page + 1 ?><?= isset($_GET['ordenar']) ? '&ordenar=' . $_GET['ordenar'] : '' ?>" aria-label="Next">
                         <span aria-hidden="true">&raquo;</span>
                     </a>
                 </li>
