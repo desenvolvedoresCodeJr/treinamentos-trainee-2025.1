@@ -7,18 +7,16 @@ use Exception;
 
 class IndividualController
 {
-
     public function index($id)
     {
-        $post = App::get('database')->selectOne('posts', $id);
+        $post = App::get('database')->selectOne('posts', $id);  
         $usuarios = App::get('database')->selectAll('usuarios');
 
         if (!$post) {
             throw new Exception("Post não encontrado.");
         }
 
-        return view('site/post-individual' , compact('post', 'usuarios'));
-
+        return view('site/postIndividual', compact('post', 'usuarios'));
     }
 
     public function store()
@@ -30,7 +28,8 @@ class IndividualController
         
         App::get('database')->insert('comentarios' , $parameters);
 
-        header('Location: /postIndividual');
+        header("Location: /postIndividual/{$_POST['id_post']}");
+
     }
 
     public function delete()
@@ -41,6 +40,7 @@ class IndividualController
 
         App::get('database')->delete('posts', $parameters['id']);
         
-        return view('site/postIndividual');
+        header("Location: /postIndividual/{$_POST['id_post']}");
+
     }
 }
