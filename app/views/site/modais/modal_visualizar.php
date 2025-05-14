@@ -11,8 +11,9 @@
         </ul>
     </div>
     <div class="modal-footer">
-        <form method="post" action="/postIndividual/delete" class="ms-auto">
-            <input type="hidden" name="comentario_id" value="<?= $comentario->id ?>">
+        <form method="post" action="/postIndividual/<?= $post->id ?>/delete" class="ms-auto">
+            <input type="hidden" name="id_post" value="<?= $post->id ?>">
+            <input type="hidden" name="id" value="<?= $comentario->id ?>">
             <button type="submit" class="btn btn-outline-danger">
                 <i class="bi bi-trash"></i> Excluir
             </button>

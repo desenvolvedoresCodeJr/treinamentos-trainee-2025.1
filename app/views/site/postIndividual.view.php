@@ -6,6 +6,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Bootstrap CSS CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        .like-btn {
+            position: absolute;
+            top: 16px;
+            right: 24px;
+            font-size: 2rem;
+            color: #dc3545;
+            cursor: pointer;
+            transition: color 0.2s;
+            z-index: 10;
+        }
+        .like-btn.liked {
+            color: #e0245e;
+        }
+        .like-count {
+            font-size: 1rem;
+            margin-left: 8px;
+            color: #333;
+        }
+        .post-card-wrapper {
+            position: relative;
+        }
+    </style>
 </head>
 <body>
     <?php require('app\views\admin\modais\header.php'); ?>
@@ -15,29 +40,61 @@
         </div>
     </header>
     <div class="container">
-        <div class="card mb-4">
-            <div class="row g-0 align-items-center">
-                <?php if (!empty($post->imagem)): ?>
-                <div class="col-md-4 text-center">
-                    <img src="/<?= htmlspecialchars($post->imagem) ?>" alt="Imagem do Post" style="max-width: 100%; height: auto; display: block;">
-                </div>
-                <?php endif; ?>
-                <div class="<?= !empty($post->imagem) ? 'col-md-8' : 'col-12' ?>">
-                    <div class="card-body">
-                        <h2 class="card-title"><?= $post->titulo ?></h2>
-                        <p class="card-text"><?= nl2br($post->descricao) ?></p>
-                        
-                        <?php $usuario = App\Core\App::get('database')->selectAll('usuarios', ['id' => $post->id_autor])[0]; ?>
-                        
-                        <div class="d-flex justify-content-between align-items-center mt-4">
-                            <span class="text-muted">Autor: <?= $usuario->nome ?></span>
-                            <span class="text-muted"><?= date('d/m/Y', strtotime($post->criado_em)) ?></span>
+        <div class="post-card-wrapper">
+            <!-- Like button -->
+            <span class="like-btn" id="likeBtn" title="Curtir">
+                <i class="fa-regular fa-heart" id="likeIcon"></i>
+                <span class="like-count" id="likeCount"><?= isset($post->likes) ? $post->likes : 0 ?></span>
+            </span>
+            <div class="card mb-4">
+                <div class="row g-0 align-items-center">
+                    <?php if (!empty($post->imagem)): ?>
+                    <div class="col-md-4 text-center">
+                        <img src="/<?= htmlspecialchars($post->imagem) ?>" alt="Imagem do Post" style="max-width: 100%; height: auto; display: block;">
+                    </div>
+                    <?php endif; ?>
+                    <div class="<?= !empty($post->imagem) ? 'col-md-8' : 'col-12' ?>">
+                        <div class="card-body">
+                            <h2 class="card-title"><?= $post->titulo ?></h2>
+                            <p class="card-text"><?= nl2br($post->descricao) ?></p>
+                            
+                            <?php $usuario = App\Core\App::get('database')->selectAll('usuarios', ['id' => $post->id_autor])[0]; ?>
+                            
+                            <div class="d-flex justify-content-between align-items-center mt-4">
+                                <span class="text-muted">Autor: <?= $usuario->nome ?></span>
+                                <span class="text-muted"><?= date('d/m/Y', strtotime($post->criado_em)) ?></span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <section>
+<script>
+    // Simple like button toggle (no backend)
+    document.addEventListener('DOMContentLoaded', function() {
+        const likeBtn = document.getElementById('likeBtn');
+        const likeIcon = document.getElementById('likeIcon');
+        const likeCount = document.getElementById('likeCount');
+        let liked = false;
+        let count = parseInt(likeCount.textContent);
+
+        likeBtn.addEventListener('click', function() {
+            liked = !liked;
+            if (liked) {
+                likeIcon.classList.remove('fa-regular');
+                likeIcon.classList.add('fa-solid');
+                likeBtn.classList.add('liked');
+                likeCount.textContent = count + 1;
+            } else {
+                likeIcon.classList.remove('fa-solid');
+                likeIcon.classList.add('fa-regular');
+                likeBtn.classList.remove('liked');
+                likeCount.textContent = count;
+            }
+        });
+    });
+</script>
             <h3>Comentários</h3>
             
             <!-- Lista de comentários -->
@@ -52,22 +109,9 @@
             <div class="my-4"></div>
             <h4>Faça seu comentário!</h4>
             <!-- Formulário para novo comentário -->
-
+            <?php require('app\views\site\modais\modal_criar.php'); ?>
             
-            <form method="post" action="/postIndividual/<?= $post->id ?>/create">
-                <input type="hidden" name="id_post" value="<?= $post->id ?>">
-                <input type="hidden" name="criado_em" value="<?= date('Y-m-d H:i:s') ?>">
-                <input type="hidden" name="id_autor" value="0">
-                <div class="mb-3">
-                    <label for="id_autor" class="form-label">Seu nome</label>
-                    <input type="text" class="form-control" id="id_autor" name="id_autor" required>
-                </div>
-                <div class="mb-3">
-                    <label for="texto" class="form-label">Comentário</label>
-                    <textarea class="form-control" id="texto" name="texto" rows="3" required></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary">Enviar Comentário</button>
-            </form>
+
         </section>
     </div>
     <!-- Bootstrap JS CDN -->

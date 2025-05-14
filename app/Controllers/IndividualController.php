@@ -24,7 +24,7 @@ class IndividualController
     {
         $parameters = [
             'texto' => $_POST['texto'],
-           'id_autor' => 1,
+            'id_autor' => 1,
             'id_post' => $id,
             'criado_em' => $_POST['criado_em'],
         ];
@@ -34,15 +34,15 @@ class IndividualController
         header("Location: /postIndividual/{$id}");
     }
 
-    public function delete()
-    {
-        $parameters = [
-            'id' => $_POST['id'],
-        ];
+public function delete()
+{
+    $id = trim($_POST['id']);
+    $id_post = trim($_POST['id_post']);
 
-        App::get('database')->delete('posts', $parameters['id']);
-        
-        header("Location: /postIndividual/{$_POST['id_post']}");
+    App::get('database')->delete('comentarios', $id);
 
-    }
+    var_dump($id_post);
+    header("Location: /postIndividual/$id_post");
+
+}
 }
