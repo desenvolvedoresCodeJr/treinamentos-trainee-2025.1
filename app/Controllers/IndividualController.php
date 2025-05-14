@@ -54,19 +54,16 @@ public function like()
         'post_id' => $post_id,
     ];
 
-        // Ensure post_id is an integer
-    $post_id = (int) $post_id;
-
     // Insert the like
     App::get('database')->insert('likes', $parameters);
 
     // Count likes for this post
     $likeCount = App::get('database')->countAllWithSearch('likes', 'post_id', $post_id);
-    var_dump($likeCount);
-    // Update the like_counter in posts table
-    App::get('database')->update('posts', ['like_counter' => $likeCount], ['id' => $post_id]);
 
-    header("Location: /postIndividual/" . $post_id);
+    // Update the like_counter in posts table
+    App::get('database')->update('posts', $post_id, ['like_counter' => $likeCount]);
+
+    header("Location: /postIndividual/$post_id");
 }
 
 }

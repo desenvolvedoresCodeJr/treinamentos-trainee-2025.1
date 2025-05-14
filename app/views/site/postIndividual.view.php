@@ -47,7 +47,14 @@
                 <input type="hidden" name="post_id" value="<?= $post->id ?>">
                 <button type="submit" class="like-btn border-0 bg-transparent p-0" id="likeBtn" title="like">
                     <i class="fa-regular fa-heart" id="likeIcon"></i>
-                    <span class="like-count" id="likeCount"><?= isset($post->like_counter) ? $post->like_counter : 0 ?></span>
+                    <span class="like-count" id="likeCount">
+                    
+                    <?php if (is_null($post->like_counter)): ?>
+                        <i class="fa fa-spinner fa-spin"></i>
+                    <?php else: ?>
+                        <?= $post->like_counter ?>
+                    <?php endif; ?>
+</span>
                 </button>
             </form>
 
