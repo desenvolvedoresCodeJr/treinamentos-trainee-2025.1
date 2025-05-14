@@ -8,12 +8,20 @@ use Exception;
 class IndividualController
 {
 
-    public function index()
+    public function index($id)
     {
-        return view('site/postIndividual');
+        $post = App::get('database')->selectOne('posts', $id);
+        $usuarios = App::get('database')->selectAll('usuarios');
+
+        if (!$post) {
+            throw new Exception("Post não encontrado.");
+        }
+
+        return view('site/post-individual' , compact('post', 'usuarios'));
+
     }
 
-        public function store()
+    public function store()
     {
         $parameters = [
             'texto' => $_POST['texto'],
@@ -25,14 +33,13 @@ class IndividualController
         header('Location: /postIndividual');
     }
 
-        public function delete()
+    public function delete()
     {
-
         $parameters = [
             'id' => $_POST['id'],
         ];
 
-        App::get('database')->delete('posts', $id);
+        App::get('database')->delete('posts', $parameters['id']);
         
         return view('site/postIndividual');
     }

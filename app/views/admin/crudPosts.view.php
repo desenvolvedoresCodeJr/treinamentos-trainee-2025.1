@@ -7,8 +7,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    <header class="bg-primary text-white text-center py-3">
-        <h1>Bem vindo ao CRUD Posts</h1>
+<?php require('app\views\admin\modais\header.php'); ?>
+    <header class="bg-primary text-white text-center py-2">
+        <h2 class="mb-0" style="font-size:1.5rem;">Bem vindo ao CRUD Posts</h2>
     </header>
 
     <main class="container my-4">
