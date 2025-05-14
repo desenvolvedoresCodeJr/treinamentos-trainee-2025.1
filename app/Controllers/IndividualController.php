@@ -11,12 +11,13 @@ class IndividualController
     {
         $post = App::get('database')->selectOne('posts', $id);  
         $usuarios = App::get('database')->selectAll('usuarios');
+        $comentarios = App::get('database')->selectAllWithSearch('comentarios', 'id_post', $id);
 
         if (!$post) {
             throw new Exception("Post não encontrado.");
         }
 
-        return view('site/postIndividual', compact('post', 'usuarios'));
+        return view('site/postIndividual', compact('post', 'usuarios', 'comentarios'));
     }
 
     public function store()

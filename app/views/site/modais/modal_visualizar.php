@@ -1,16 +1,21 @@
-<div class="modal-content" style="display: block; position: static; border: none; box-shadow: none;">
-    <div class="modal-header">
-        <h5 class="modal-title" id="visualizarComentarioModalLabel">Detalhes do Comentário</h5>
-    </div>
+<div class="modal-content" style="border: 2px solid #dee2e6; border-radius: 12px; padding-bottom: 24px; padding-right: 24px;">
     <div class="modal-body">
-        <p><strong>ID:</strong> 123</p>
-        <p><strong>Autor:</strong> Fulano</p>
-        <p><strong>Comentário:</strong> Este é um comentário de exemplo.</p>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <span><strong>Autor:</strong> <?= $usuario->nome ?></span>
+                <span> <?= date('d/m/Y', strtotime($comentario->criado_em)) ?></span>
+            </li>
+            <li class="list-group-item">
+                <strong>Texto:</strong> <?= nl2br($comentario->texto) ?>
+            </li>
+        </ul>
     </div>
     <div class="modal-footer">
-        <form method="post" action="/postIndividual/delete">
-            <input type="hidden" name="comentario_id" value="123">
-            <button type="submit" class="btn btn-danger">Excluir Comentário</button>
+        <form method="post" action="/postIndividual/delete" class="ms-auto">
+            <input type="hidden" name="comentario_id" value="<?= $comentario->id ?>">
+            <button type="submit" class="btn btn-outline-danger">
+                <i class="bi bi-trash"></i> Excluir
+            </button>
         </form>
     </div>
 </div>
