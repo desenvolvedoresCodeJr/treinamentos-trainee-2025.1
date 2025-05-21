@@ -25,9 +25,9 @@
 * Esse blog tem como intuito de acomponhar o calendário do trainee, fazendo treinamentos necessarios para completar o processo;
 
 ## Grupos Trainee:
-* [Oracle]()
+* [Oracle](https://github.com/JG-Souza/Oracle-Trainee-2025.1)
 * [Rastros de Ruas](https://github.com/G-Braz/Rastros-de-Rua-Trainee)
-* [Diário de Bordo]()
-* [Cine Stroll]()
-* [Quid Stroll]()
+* [Diário de Bordo](https://github.com/RomuloAmaral32/Diario_de_bordo-2025.1)
+* [Cine Stroll](https://github.com/GabrielRCunha/trainee-cineStroll)
+* [Quid Stroll](https://github.com/lucasferoli/QuidStroll_Trainee-2025.1)
 
