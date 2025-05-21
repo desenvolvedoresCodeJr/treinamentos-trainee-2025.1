@@ -18,25 +18,20 @@ public function index()
         }
     }
 
-    $itensPage = 5;
-    $inicio = $itensPage * $page - $itensPage;
-
-    // Ordenação
-    $ordenar = $_GET['ordenar'] ?? 'mais_recente';
-    $orderClause = match ($ordenar) {
-        'mais_antigo' => 'id ASC',
-        'relevancia'  => 'like_counter DESC',
-        default       => 'id ASC'
-    };
-
-    // Contagem de registros e busca
-    if (isset($_GET['search']) && !empty($_GET['search'])) {
-        $posts = App::get('database')->selectAllWithSearch('posts', 'titulo', $_GET['search'], $inicio, $itensPage, $orderClause);
-        $rows_count = App::get('database')->countAllWithSearch('posts', 'titulo', $_GET['search']);
-    } else {
+           $itensPage = 5;
+        $inicio = $itensPage * $page - $itensPage;
         $rows_count = App::get('database')->countAll('posts');
-        $posts = App::get('database')->selectAll('posts', $inicio, $itensPage, $orderClause);
-    }
+
+        if ($inicio > $rows_count) {
+            return redirect('crudPosts');
+        }
+
+        if (isset($_GET['search']) && !empty($_GET['search'])) {
+            $posts = App::get('database')->selectAllWithSearch('posts', 'titulo', $_GET['search'], $inicio, $itensPage);
+            $rows_count = App::get('database')->countAllWithSearch('posts', 'titulo', $_GET['search']);
+        } else {
+            $posts = App::get('database')->selectAll('posts', $inicio, $itensPage, null);
+        }
 
     $total_pages = max(1, ceil($rows_count / $itensPage));
 
