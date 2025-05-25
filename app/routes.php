@@ -15,6 +15,9 @@ use App\Core\Router;
     //rotas login
     $router->get('login', 'LoginController@exibirLogin');
     $router->get('dashboard', 'LoginController@exibirDashboard');
+    $router->post('login', 'LoginController@executaLogin');
+    $router->post('logout', 'LoginController@executaLogout');
+
 
     //rotas usuarios
     $router->get('crudUsuarios', 'UsuariosController@index');
