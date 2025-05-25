@@ -3,6 +3,7 @@
 namespace App\Controllers;
 use App\Controllers\UsuariosController;
 use App\Controllers\ExampleController;
+use App\Controllers\LoginController;
 use App\Core\Router;
 
     $router->get('', 'ExampleController@index');
@@ -11,6 +12,9 @@ use App\Core\Router;
     //get: Solicitar dados de um recurso específico
     //post: Enviar dados para serem processados
 
+    //rotas login
+    $router->get('login', 'LoginController@exibirLogin');
+    $router->get('dashboard', 'LoginController@exibirDashboard');
 
     //rotas usuarios
     $router->get('crudUsuarios', 'UsuariosController@index');
