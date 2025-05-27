@@ -61,8 +61,7 @@ public function index()
             'titulo' => $_POST['titulo'],
             'descricao' => $_POST['descricao'],
             'imagem' =>  $caminhodaimagem,
-
-            'id_autor' => 1,
+            'id_autor' => $_POST['id_autor'],
 
         ];
 

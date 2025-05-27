@@ -7,8 +7,8 @@
                 <a class="btn btn-info flex-fill mx-2" href="/crudUsuarios">
                     <i class="bi bi-people me-1"></i> CRUD Usuários
                 </a>
-                <a class="btn btn-success flex-fill mx-2" href="/login">
-                    <i class="bi bi-box-arrow-in-right me-1"></i> Entrar
+                <a class="btn btn-success flex-fill mx-2" href="/">
+                    <i class="bi bi-box-arrow-in-right me-1"></i> Logout
                 </a>
             </div>    </div>
         </div>

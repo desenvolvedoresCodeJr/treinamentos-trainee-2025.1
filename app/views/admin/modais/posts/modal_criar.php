@@ -6,14 +6,18 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
                     </div>
                     <div class="modal-body">
+                        
                         <form method="POST" action="/crudPosts/create" enctype="multipart/form-data">
                             <div class="mb-3">
                                 <label for="Titulo" class="form-label">Titulo</label>
                                 <input type="text" class="form-control" id="titulo" name="titulo" required>
                             </div>
+
+                            <input type="hidden" name="id_autor" value="<?php echo $_SESSION['id']; ?>">
+
                             <div class="mb-3">
                                 <label for="Descricao" class="form-label">Descrição</label>
-                                <input type="text" class="form-control" id="descricao" name="descricao" required>
+                                <textarea type="text" style="resize: none;" rows=15 class="form-control" id="descricao" name="descricao" required> </textarea>
                             </div>
                                 <div class="mb-3">
                                     <label for="imagem" class="form-label">Imagem</label>

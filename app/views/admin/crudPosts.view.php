@@ -52,38 +52,12 @@
 
                 <?php
                 if (!empty($posts) && is_array($posts)):
-                    
-                    // Ordena os posts por mais antigo
-                    if (isset($_GET['ordenar']) && $_GET['ordenar'] == 'mais_antigo') {
-                        $index = count($posts);
-                        while ($index) {
-                            $post = $posts[--$index];
-                            $usuario = App\Core\App::get('database')->selectAll('usuarios', ['id' => $post->id_autor])[0];
-                            require('app\views\admin\modais\tabela.php');
-                        }
-                    } 
-                    
-                    // Ordena os posts por like_counter (maior para menor)
-                    elseif (isset($_GET['ordenar']) && $_GET['ordenar'] == 'relevancia') {
-                        $posts_relevancia = $posts;
-                        usort($posts_relevancia, function($a, $b) {
-                            return $b->like_counter <=> $a->like_counter;
-                        });
-                        foreach($posts_relevancia as $post) {
-                            $usuario = App\Core\App::get('database')->selectAll('usuarios', ['id' => $post->id_autor])[0];
-                            require('app\views\admin\modais\tabela.php');
-                        }
-
-                    // Ordena os posts por mais recente
-                    } else {
-                        foreach($posts as $post) {
-                            $usuario = App\Core\App::get('database')->selectAll('usuarios', ['id' => $post->id_autor])[0];
-                            require('app\views\admin\modais\tabela.php');
-                        }
+                    foreach($posts as $post) {
+                        $usuario = App\Core\App::get('database')->selectOne('usuarios', $post->id_autor);
+                        require('app\views\admin\modais\tabela.php');
                     }
                 else:
                 ?>
-
                     <tr>
                         <td colspan="4" class="text-center">Nenhum post encontrado.</td>
                     </tr>
@@ -94,6 +68,8 @@
         </table>
     </main>
     <?php foreach($posts as $post): ?>
+
+        <?php $usuario = App\Core\App::get('database')->selectOne('usuarios', $post->id_autor); ?>
 
             <!-- Modal Visualizar -->
             <?php require('app\views\admin\modais\posts\modal_visualizar.php'); ?>

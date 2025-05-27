@@ -8,7 +8,8 @@
             <div class="modal-body">
                 <form method="POST" action="/crudPosts/edit" enctype="multipart/form-data">
                     <input type="hidden" name="id" value="<?= $post->id ?>">
-                    <input type="hidden" name="id_autor" value="1"> <!-- Adicionando id_autor -->
+
+                    <input type="hidden" name="id_autor" value="<?= $post->id_autor ?>"> 
 
                     <div class="mb-3">
                         <label for="Titulo-<?= $post->id ?>" class="form-label">Titulo</label>
