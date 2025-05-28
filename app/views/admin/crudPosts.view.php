@@ -17,6 +17,7 @@
 <body>
 <?php require('app\views\admin\modais\header.php'); ?>
     <header class="bg-primary text-white text-center py-2">
+        
         <h2 class="mb-0" style="font-size:1.5rem;">Bem vindo ao CRUD Posts</h2>
     </header>
 
